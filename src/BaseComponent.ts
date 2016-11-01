@@ -1,4 +1,4 @@
-import * as inherit from 'inherit';
+import * as inherit from 'inherit'
 
 class Component extends Object {
   constructor(public props: any) {
@@ -8,36 +8,36 @@ class Component extends Object {
 
 export default inherit(Component, {
   __constructor(): void {
-    this.__base.apply(this, arguments);
-    this.willInit(this.props);
+    this.__base.apply(this, arguments)
+    this.willInit(this.props)
   },
 
   willInit(): void {
   },
 
   tag(): string {
-    return 'div';
+    return 'div'
   },
 
   attrs(): null {
-    return null;
+    return null
   },
 
   mods(): null {
-    return null;
+    return null
   },
 
   cls(): string {
-    return '';
+    return ''
   },
 
   mix(): null {
-    return null;
+    return null
   },
 
   render(_props: any, _children: any): any {
-    const { props } = this,
-      res = this.__render(
+    const { props } = this
+    const res = this.__render(
         this.tag(props),
         this.attrs(props),
         this.block,
@@ -46,12 +46,12 @@ export default inherit(Component, {
         [props.mix, this.mix(props)],
         this.cls(props),
         this.content(props, props.children)
-      );
+      )
 
-    return this.wrap ? this.wrap(res) : res;
+    return this.wrap ? this.wrap(res) : res
   },
 
   content(_: any, children: any): any {
-    return children;
+    return children
   }
-});
+})
