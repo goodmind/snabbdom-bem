@@ -1,4 +1,2 @@
-export declare function html(tag: string | Function | Function & {
-    displayName: any;
-    __parent: any;
-}, attrs: any, children: any): any;
+import { BEM } from './interfaces';
+export declare function html(tag: string | Function | BEM.Constructor, attrs: any, children: any): any;
