@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "declaration": true,
+    "sourceMap": true,
+    "noImplicitThis": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es5", "es6", "dom"],
+    "outDir": "lib/",
+    "jsx": "preserve",
+    "types": [
+      "node"
+    ]
+  },
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2
+  },
+  "files": [
+    "../typings/index.d.ts",
+    "./desktop.bundles/index/index.tsx",
+    "./desktop.bundles/index/index.d.ts"
+  ]
+}
