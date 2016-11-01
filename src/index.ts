@@ -4,11 +4,11 @@ import ClassNameBuilder from './ClassNameBuilder'
 import simpleComponent from './simpleComponent'
 
 const defaultNaming = new ClassNameBuilder({
-    elementSeparator : '-',
-    modSeparator : '_',
-    modValueSeparator : '_'
-  }),
-  defaultDecls = decls({}, BaseComponent, defaultNaming)
+  elementSeparator : '-',
+  modSeparator : '_',
+  modValueSeparator : '_'
+})
+const defaultDecls = decls({}, BaseComponent, defaultNaming)
 
 export const { decl, declMod } = defaultDecls
 export { html } from './html'
