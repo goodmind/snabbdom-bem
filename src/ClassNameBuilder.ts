@@ -1,15 +1,15 @@
 import { B } from 'b_' // TODO: optimize?
 
 export default class ClassNameBuilder {
-  b_: any
+  b: any
 
   constructor(options: any) {
-    this.b_ = B(options)
+    this.b = B(options)
   }
 
   stringify(block: any, elem: any, mods?: any, mixes?: any[], cls?: any) {
-    return this.b_(block, elem, mods) +
-      (mixes ? ' ' + mixes.map(mix => this.b_(mix.block || block, mix.elem, mix.mods)).join(' ') : '') +
+    return this.b(block, elem, mods) +
+      (mixes ? ' ' + mixes.map(mix => this.b(mix.block || block, mix.elem, mix.mods)).join(' ') : '') +
       (cls ? ' ' + cls : '')
   }
 
@@ -23,10 +23,10 @@ export default class ClassNameBuilder {
       return undefined
     }
 
-    let mixes: any[] = [];
+    let mixes: any[] = []
 
-    mix1 && (mixes = [...mixes, ...mix1]);
-    mix2 && (mixes = [...mixes, ...mix2]);
+    if (mix1) { mixes = [...mixes, ...mix1] }
+    if (mix2) { mixes = [...mixes, ...mix2] }
 
     return mixes
   }
