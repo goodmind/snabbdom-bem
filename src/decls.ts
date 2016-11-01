@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ If a copy of the MPL was not distributed with this file,
+ You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import * as inherit from 'inherit'
 import renderTag from './renderTag'
 import ClassNameBuilder from './ClassNameBuilder'
@@ -33,16 +37,15 @@ export default function bemReactCore(options: any, BaseComponent: any, className
           const field = fields[name]
           if (typeof field === 'function') {
             fields[name] = function () {
-            let method: Function
-            if (predicate.call(this, this.props)) {
-              method = field
-            } else {
-              const baseMethod = ptp[name]
-              if (baseMethod && baseMethod !== field) { method = this.__base }
+              let method: Function
+              if (predicate.call(this, this.props)) {
+                method = field
+              } else {
+                const baseMethod = ptp[name]
+                if (baseMethod && baseMethod !== field) { method = this.__base }
+              }
+              return method && method.apply(this, arguments)
             }
-
-            return method && method.apply(this, arguments)
-          }
           }
         }
 
