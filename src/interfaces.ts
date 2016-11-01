@@ -33,11 +33,9 @@ export namespace BEM {
   }
 
   export interface Constructable {
-    displayName: string
+    displayName: any
     __parent: any
   }
 
-  export interface Constructor extends Constructable {
-    new (props: Props): Element
-  }
+  export type Constructor = Function & Constructable
 }

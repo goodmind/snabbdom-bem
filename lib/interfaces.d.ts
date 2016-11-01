@@ -27,10 +27,8 @@ export declare namespace BEM {
         wrap?<T>(props?: Props): T | T[];
     }
     interface Constructable {
-        displayName: string;
+        displayName: any;
         __parent: any;
     }
-    interface Constructor extends Constructable {
-        new (props: Props): Element;
-    }
+    type Constructor = Function & Constructable;
 }
