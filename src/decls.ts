@@ -1,13 +1,13 @@
-import * as inherit from 'inherit';
-import renderTag from './renderTag';
+import * as inherit from 'inherit'
+import renderTag from './renderTag'
 import ClassNameBuilder from './ClassNameBuilder'
 
 export default function bemReactCore(options: any, BaseComponent: any, classNameBuilder: ClassNameBuilder) {
-  const entities = {};
-  BaseComponent.prototype.__render = renderTag(classNameBuilder);
+  const entities = {}
+  BaseComponent.prototype.__render = renderTag(classNameBuilder)
 
   function applyEntityDecls() {
-    const entity = this;
+    const entity = this
 
     if (entity.decls) {
       entity.decls.forEach(({ fields, staticFields }: { fields: any, staticFields: any }) => {
@@ -16,41 +16,40 @@ export default function bemReactCore(options: any, BaseComponent: any, className
           entity.cls = inherit(
             entity.base ? entity.base : BaseComponent,
             fields,
-            Object.assign({
-              displayName: classNameBuilder.stringify(
-                fields.block, fields.elem
-              ),
-            }, staticFields)
-          );
-      });
+            Object.assign(
+              { displayName: classNameBuilder.stringify(fields.block, fields.elem) },
+              staticFields)
+          )
+      })
 
-      entity.decls = null;
+      entity.decls = null
     }
 
     if (entity.modDecls) {
-      const ptp = entity.cls.prototype;
+      const ptp = entity.cls.prototype
 
-      entity.modDecls.forEach(({ predicate, fields, staticFields }: { predicate: () => boolean, fields: any, staticFields: any }) => {
+      entity.modDecls.forEach(({ predicate, fields, staticFields }: any) => {
         for (let name in fields) {
-          const field = fields[name];
-          typeof field === 'function' && (fields[name] = function () {
-            let method: Function;
+          const field = fields[name]
+          if (typeof field === 'function') {
+            fields[name] = function () {
+            let method: Function
             if (predicate.call(this, this.props)) {
-              method = field;
+              method = field
             } else {
-              const baseMethod = ptp[name];
-              baseMethod && baseMethod !== field &&
-              (method = this.__base);
+              const baseMethod = ptp[name]
+              if (baseMethod && baseMethod !== field) { method = this.__base }
             }
 
-            return method && method.apply(this, arguments);
-          });
+            return method && method.apply(this, arguments)
+          }
+          }
         }
 
-        inherit.self(entity.cls, fields, staticFields);
-      });
+        inherit.self(entity.cls, fields, staticFields)
+      })
 
-      entity.modDecls = null;
+      entity.modDecls = null
     }
 
     return { 'default': entity.cls }
@@ -63,44 +62,44 @@ export default function bemReactCore(options: any, BaseComponent: any, className
         decls: null,
         modDecls: null,
         applyDecls: applyEntityDecls
-      });
+      })
   }
 
   return {
     decl(base: any, fields?: any, staticFields?: any) {
       if (typeof base !== 'function') {
-        staticFields = fields;
-        fields = base;
-        base = undefined;
+        staticFields = fields
+        fields = base
+        base = undefined
       }
 
-      fixHooks(wrapBemFields(fields));
+      fixHooks(wrapBemFields(fields))
 
-      const key = classNameBuilder.stringify(fields.block, fields.elem),
-        entity = getEntity(key);
+      const key = classNameBuilder.stringify(fields.block, fields.elem)
+      const entity = getEntity(key)
 
       if (base) {
-        if (entity.base) throw new Error(
-          `BEM-entity "${key}" has multiple ancestors`
-        );
-        entity.base = base;
+        if (entity.base) {
+          throw new Error(`BEM-entity "${key}" has multiple ancestors`)
+        }
+        entity.base = base
       }
 
-      entity.decls = entity.decls || [];
-      entity.decls.push({ fields, staticFields });
+      entity.decls = entity.decls || []
+      entity.decls.push({ fields, staticFields })
 
-      return entity;
+      return entity
     },
 
     declMod(predicate: (...args: any[]) => any, fields: any, staticFields?: any) {
-      fixHooks(wrapBemFields(fields));
+      fixHooks(wrapBemFields(fields))
 
-      const entity = getEntity(classNameBuilder.stringify(fields.block, fields.elem));
+      const entity = getEntity(classNameBuilder.stringify(fields.block, fields.elem))
 
-      entity.modDecls = entity.modDecls || [];
-      entity.modDecls.push({ predicate, fields, staticFields });
+      entity.modDecls = entity.modDecls || []
+      entity.modDecls.push({ predicate, fields, staticFields })
 
-      return entity;
+      return entity
     }
   }
 
@@ -108,19 +107,19 @@ export default function bemReactCore(options: any, BaseComponent: any, className
 
 function wrapWithFunction(obj: any, name: any) {
   if (Array.isArray(name)) {
-    name.forEach(n => wrapWithFunction(obj, n));
+    name.forEach(n => wrapWithFunction(obj, n))
   } else {
     if (obj.hasOwnProperty(name)) {
-      const val = obj[name];
-      typeof val !== 'function' && (obj[name] = () => val);
+      const val = obj[name]
+      if (typeof val !== 'function') { obj[name] = () => val }
     }
   }
 
-  return obj;
+  return obj
 }
 
 function wrapBemFields(obj: any) {
-  return wrapWithFunction(obj, ['tag', 'attrs', 'content', 'mods', 'mix', 'cls']);
+  return wrapWithFunction(obj, ['tag', 'attrs', 'content', 'mods', 'mix', 'cls'])
 }
 
 const lifecycleHooks = {
@@ -131,14 +130,15 @@ const lifecycleHooks = {
   willUpdate: 'componentWillUpdate',
   didUpdate: 'componentDidUpdate',
   willUnmount: 'componentWillUnmount'
-};
+}
 
 function fixHooks(obj: any) {
-  for (let oldName in lifecycleHooks)
+  for (let oldName in lifecycleHooks) {
     if (obj[oldName]) {
-      obj[lifecycleHooks[oldName]] = obj[oldName];
-      delete obj[oldName];
+      obj[lifecycleHooks[oldName]] = obj[oldName]
+      delete obj[oldName]
     }
+  }
 
-  return obj;
+  return obj
 }
