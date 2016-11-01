@@ -1,13 +1,15 @@
-import {decl} from 'snabbdom-bem';
-import MyBlock from 'b:MyBlock';
+/* This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ If a copy of the MPL was not distributed with this file,
+ You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-console.log('MyBlock', MyBlock)
+import { decl } from 'snabbdom-bem'
+import MyBlock from 'b:MyBlock'
 
 export default decl(MyBlock, {
-    block : 'MyDerivedBlock',
-    cls : 'add-cls',
-    onClick(e) {
-        this.__base.apply(this, arguments);
-        console.log(this.block);
-    }
-});
+  block: 'MyDerivedBlock',
+  cls: 'add-cls',
+  onClick (e) {
+    this.__base.apply(this, arguments)
+    console.log(this.block)
+  }
+})
