@@ -13,6 +13,7 @@ export default inherit(Component, {
   },
 
   willInit(): void {
+    return
   },
 
   tag(): string {
