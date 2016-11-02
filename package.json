@@ -8,6 +8,7 @@
     "branch": "master"
   },
   "scripts": {
+    "test": "echo 'No test specified' && exit 1",
     "lint": "tslint 'src/**/*.ts?(x)'; tslint 'test/**/*.ts?(x)' --exclude 'test/**/*.d.ts'",
     "clean:lib": "rm -rf lib",
     "clean:prelib": "rm -rf prelib",
@@ -15,8 +16,10 @@
     "clean": "npm run clean:lib",
     "build": "tsc && babel prelib -d lib --copy-files",
     "postbuild": "npm run clean:prelib",
-    "pretest": "webpack --config=test/webpack.config.js",
-    "test": "webpack-dev-server --port=3333 --hot --inline --progress --config=test/webpack.config.js --content-base=test/"
+    "preexample": "webpack --config=example/webpack.config.js",
+    "example": "webpack-dev-server --port=3333 --hot --inline --progress --config=example/webpack.config.js --content-base=example/",
+    "prepublish": "npm run clean && npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "goodmind <andwebar@gmail.com>",
   "license": "(MIT OR MPL-2.0)",
