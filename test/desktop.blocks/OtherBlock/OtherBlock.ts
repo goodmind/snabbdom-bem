@@ -13,7 +13,7 @@ export default decl({
   attrs ({ value, onChange }) {
     return {
       value,
-      onChange
+      'on-change': onChange
     }
   }
 })
