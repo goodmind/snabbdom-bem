@@ -69,7 +69,7 @@ export default function bemReactCore(options: any, BaseComponent: any, className
   }
 
   return {
-    decl(base: any, fields?: any, staticFields?: any) {
+    decl (base: any, fields?: any, staticFields?: any) {
       if (typeof base !== 'function') {
         staticFields = fields
         fields = base
@@ -94,7 +94,7 @@ export default function bemReactCore(options: any, BaseComponent: any, className
       return entity
     },
 
-    declMod(predicate: (...args: any[]) => any, fields: any, staticFields?: any) {
+    declMod (predicate: (...args: any[]) => any, fields: any, staticFields?: any) {
       fixHooks(wrapBemFields(fields))
 
       const entity = getEntity(classNameBuilder.stringify(fields.block, fields.elem))
@@ -126,13 +126,13 @@ function wrapBemFields(obj: any) {
 }
 
 const lifecycleHooks = {
-  willMount: 'componentWillMount',
-  didMount: 'componentDidMount',
+  willMount: 'hookInit',
+  didMount: 'hookInsert',
   willReceiveProps: 'componentWillReceiveProps',
   shouldUpdate: 'shouldComponentUpdate',
-  willUpdate: 'componentWillUpdate',
-  didUpdate: 'componentDidUpdate',
-  willUnmount: 'componentWillUnmount'
+  willUpdate: 'hookPrepatch',
+  didUpdate: 'hookUpdate',
+  willUnmount: 'hookDestroy'
 }
 
 function fixHooks(obj: any) {
