@@ -7,7 +7,7 @@
     "branch": "master"
   },
   "scripts": {
-    "test": "echo 'No test specified' && exit 1",
+    "test": "echo 'No test specified'",
     "lint": "tslint 'src/**/*.ts?(x)'; tslint 'test/**/*.ts?(x)' --exclude 'test/**/*.d.ts'",
     "clean:lib": "rm -rf lib",
     "clean:prelib": "rm -rf prelib",
