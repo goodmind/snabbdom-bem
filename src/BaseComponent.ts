@@ -4,38 +4,35 @@
 
 import * as inherit from 'inherit'
 
-let Component = inherit({
-  __constructor (props: any): void {
-    this.props = props
-    this.hooks = {
-      'hook-init': this.hookInit.bind(this),
-      'hook-insert': this.hookInsert.bind(this),
-      'hook-prepatch': this.hookPrepatch.bind(this),
-      'hook-update': this.hookUpdate.bind(this),
-      'hook-destroy': this.hookDestroy.bind(this)
+let Component = inherit(
+  {
+    __constructor (props: any): void {
+      this.props = props
+      this.hooks = {
+        'hook-init': this.hookInit.bind(this),
+        'hook-insert': this.hookInsert.bind(this),
+        'hook-prepatch': this.hookPrepatch.bind(this),
+        'hook-update': this.hookUpdate.bind(this),
+        'hook-destroy': this.hookDestroy.bind(this)
+      }
+    },
+    hookInit () {
+      return
+    },
+    hookInsert () {
+      return
+    },
+    hookPrepatch () {
+      return
+    },
+    hookUpdate () {
+      return
+    },
+    hookDestroy () {
+      return
     }
   },
-
-  hookInit () {
-    return
-  },
-
-  hookInsert () {
-    return
-  },
-
-  hookPrepatch () {
-    return
-  },
-
-  hookUpdate () {
-    return
-  },
-
-  hookDestroy () {
-    return
-  }
-}, {})
+  {})
 
 export default inherit(Component, {
   __constructor (): void {
