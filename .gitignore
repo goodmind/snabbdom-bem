@@ -1,4 +1,4 @@
 node_modules
 prelib
-test/desktop.bundles/index/_index.js
-test/desktop.bundles/index/test/
+example/desktop.bundles/index/_index.js
+example/desktop.bundles/index/example
