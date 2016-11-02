@@ -4,8 +4,11 @@
   "description": "Snabbdom for BEM methodology",
   "typings": "lib/index.d.ts",
   "main": "index.js",
+  "release": {
+    "branch": "master"
+  },
   "scripts": {
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "tslint 'src/**/*.ts?(x)'; tslint 'test/**/*.ts?(x)' --exclude 'test/**/*.d.ts'",
     "clean:lib": "rm -rf lib",
     "clean:prelib": "rm -rf prelib",
     "preclean": "npm run clean:prelib",
@@ -13,7 +16,7 @@
     "build": "tsc && babel prelib -d lib --copy-files",
     "postbuild": "npm run clean:prelib",
     "pretest": "webpack --config=test/webpack.config.js",
-    "test": "webpack-dev-server --port=3000 --hot --inline --progress --config=test/webpack.config.js --content-base=test/"
+    "test": "webpack-dev-server --port=3333 --hot --inline --progress --config=test/webpack.config.js --content-base=test/"
   },
   "author": "goodmind <andwebar@gmail.com>",
   "license": "(MIT OR MPL-2.0)",
@@ -33,8 +36,8 @@
     "tslint-config-standard": "^1.5.0",
     "typescript": "^2.0.6",
     "webpack": "^1.13.3",
-    "webpack-bem-loader": "0.0.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-bem-ts-loader": "file:./loaders/webpack-bem-ts-loader"
   },
   "dependencies": {
     "b_": "^1.3.3",
