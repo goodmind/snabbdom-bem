@@ -4,11 +4,38 @@
 
 import * as inherit from 'inherit'
 
-class Component extends Object {
-  constructor (public props: any) {
-    super()
+let Component = inherit({
+  __constructor (props: any): void {
+    this.props = props
+    this.hooks = {
+      'hook-init': this.hookInit.bind(this),
+      'hook-insert': this.hookInsert.bind(this),
+      'hook-prepatch': this.hookPrepatch.bind(this),
+      'hook-update': this.hookUpdate.bind(this),
+      'hook-destroy': this.hookDestroy.bind(this)
+    }
+  },
+
+  hookInit () {
+    return
+  },
+
+  hookInsert () {
+    return
+  },
+
+  hookPrepatch () {
+    return
+  },
+
+  hookUpdate () {
+    return
+  },
+
+  hookDestroy () {
+    return
   }
-}
+}, {})
 
 export default inherit(Component, {
   __constructor (): void {
@@ -50,7 +77,8 @@ export default inherit(Component, {
       this.mods(props),
       [props.mix, this.mix(props)],
       this.cls(props),
-      this.content(props, props.children)
+      this.content(props, props.children),
+      this.hooks
     )
 
     return this.wrap ? this.wrap(res) : res
