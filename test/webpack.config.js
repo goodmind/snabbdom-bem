@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.ts|tsx$/,
         exclude: /node_modules/,
-        loaders: ['webpack-bem', 'babel', 'ts']
+        loaders: ['webpack-bem-ts', 'babel', 'ts']
       },
       {
         test: /\.css$/,
