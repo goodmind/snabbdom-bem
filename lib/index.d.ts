@@ -1,4 +1,4 @@
 export declare const decl: (base: any, fields?: any, staticFields?: any) => any, declMod: (predicate: (...args: any[]) => any, fields: any, staticFields?: any) => any;
 export { html } from './html';
-declare var _default: ({block, elem, mods, tag, mix, attrs, cls, children, hook}: any) => JSX.Element;
+declare var _default: ({block, elem, mods, tag, mix, attrs, cls, children, hooks}: any) => JSX.Element;
 export default _default;
