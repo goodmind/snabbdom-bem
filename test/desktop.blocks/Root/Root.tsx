@@ -2,6 +2,7 @@
  If a copy of the MPL was not distributed with this file,
  You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+// tslint:disable-next-line:no-unused-variable
 const { html } = require('snabbdom-bem')
 import Bem, { decl } from 'snabbdom-bem'
 import MyBlock from 'b:MyBlock m:myMod m:myModWithVal=valOne'
@@ -18,27 +19,30 @@ export default decl({
   },
   content() {
     return [
-      <MyBlock key="1">
-        <Bem block="InlineBlock" elem="Elem" mods={{ a : 'b' }}
+      <MyBlock key='1'>
+        <Bem block='InlineBlock' elem='Elem' mods={{ a : 'b' }}
              mix={{block: 'YetAnBlock', elem: 'Yep'}}>InlineBlock</Bem>
       </MyBlock>,
-      <MyBlock key="2" disabled>321</MyBlock>,
+      <MyBlock key='2' disabled>321</MyBlock>,
       ' ',
-      <MyBlock key="3" myMod>myMod</MyBlock>,
+      <MyBlock key='3' myMod>myMod</MyBlock>,
       ' ',
-      <MyBlock key="4" myModWithVal="valOne">myModWithVal valOne</MyBlock>,
+      <MyBlock key='4' myModWithVal='valOne'>myModWithVal valOne</MyBlock>,
       ' ',
-      <MyDerivedBlock key="5">MyDerivedBlock</MyDerivedBlock>,
+      <MyDerivedBlock key='5'>MyDerivedBlock</MyDerivedBlock>,
       <OtherBlock
-        key="6"
+        key='6'
         value={this.state.value}
         mix={{ block : 'OuterMixedBlock', elem : 'Elem' }}
         otherMod
-        onChange={({ target }) => this.setState({ value : target.value }) }/>,
-      <Bem block={this} elem="RootElem" key="6" mods={{ a : 'b' }}>RootElem</Bem>,
-      <Bem block={this.__self} elem="OtherElem" key="7">OtherElem 1</Bem>,
-      <Bem block="OtherBlock" elem="OtherElem" key="8">OtherElem 2</Bem>,
-      <WrappedBlock key="9">wrapped block</WrappedBlock>
+        onChange={({ target }) => {
+          console.log(this)
+          this.state.value = target.value
+        } }/>,
+      <Bem block={this} elem='RootElem' key='6' mods={{ a : 'b' }}>RootElem</Bem>,
+      <Bem block={this.__self} elem='OtherElem' key='7'>OtherElem 1</Bem>,
+      <Bem block='OtherBlock' elem='OtherElem' key='8'>OtherElem 2</Bem>,
+      <WrappedBlock key='9'>wrapped block</WrappedBlock>
     ]
   }
 })
