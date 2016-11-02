@@ -1,0 +1,17 @@
+{
+  "name": "webpack-bem-ts-loader",
+  "version": "0.0.0",
+  "description": "Webpack TypeScript BEM loader",
+  "private": true,
+  "keywords": [
+    "bem",
+    "webpack"
+  ],
+  "license": "MPL-2.0",
+  "dependencies": {
+    "vow": "^0.4.12",
+    "vow-fs": "^0.3.5",
+    "bem-naming": "^1.0.1",
+    "falafel": "^1.2.0"
+  }
+}
