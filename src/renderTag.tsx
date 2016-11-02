@@ -2,11 +2,21 @@
  If a copy of the MPL was not distributed with this file,
  You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+// tslint:disable-next-line:no-unused-variable
 const { html } = require('snabbdom-jsx')
-import ClassNameBuilder from './ClassNameBuilder';
+import ClassNameBuilder from './ClassNameBuilder'
 
 export default function (classNameBuilder: ClassNameBuilder) {
-  return (Tag: string, attrs: any = {}, block: any, elem: any, mods: any, mixes: any, cls: any, content: any, hooks: any) => {
+  return (
+    Tag: string,
+    attrs: any = {},
+    block: any,
+    elem: any,
+    mods: any,
+    mixes: any,
+    cls: any,
+    content: any,
+    hooks: any) => {
     return (
       <Tag
         className={classNameBuilder.stringify(
@@ -19,6 +29,6 @@ export default function (classNameBuilder: ClassNameBuilder) {
         {...attrs}>
         {content}
       </Tag>
-    );
-  };
+    )
+  }
 }
