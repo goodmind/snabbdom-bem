@@ -7,6 +7,6 @@ import { declMod } from 'snabbdom-bem'
 export default declMod(({ myModWithVal }) => myModWithVal, {
   block: 'MyBlock',
   mods ({ myModWithVal }) {
-    return Object.assign(this.__base.apply(this, arguments), myModWithVal)
+    return Object.assign(this.__base.apply(this, arguments), { myModWithVal })
   }
 })

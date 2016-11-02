@@ -17,7 +17,7 @@ export default decl({
   attrs () {
     return {
       href: '//yandex.ru',
-      onClick: this.onClick.bind(this)
+      'on-click': this.onClick.bind(this)
     }
   },
   onClick (e) {
