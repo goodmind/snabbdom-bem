@@ -1,5 +1,5 @@
 const { html } = require('snabbdom-bem')
-import { init, VNode } from 'snabbdom'
+import { init } from 'snabbdom'
 import Root from 'b:Root'
 
 let patch2: any = init([
