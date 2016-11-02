@@ -7,7 +7,7 @@ import ClassNameBuilder from './ClassNameBuilder'
 
 export default function (classNameBuilder: ClassNameBuilder) {
   const _render = renderTag(classNameBuilder)
-  return ({ block, elem, mods, tag = 'div', mix, attrs, cls, children }: any) => {
+  return ({ block, elem, mods, tag = 'div', mix, attrs, cls, children, hooks }: any) => {
     const typeOfBlock = typeof block
     if (typeOfBlock === 'object') {
       block = block.block
@@ -15,6 +15,6 @@ export default function (classNameBuilder: ClassNameBuilder) {
       block = block.prototype.block
     }
 
-    return _render(tag, attrs, block, elem, mods, mix, cls, children)
+    return _render(tag, attrs, block, elem, mods, mix, cls, children, hooks)
   }
 }
